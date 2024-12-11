@@ -7,6 +7,7 @@ import 'package:hellowolrd/screens/chat_screen.dart';
 import 'package:hellowolrd/screens/home.dart';
 import 'package:hellowolrd/screens/order_summary.dart';
 import 'package:hellowolrd/screens/pick_car.dart';
+import 'package:hellowolrd/post.dart'; // P
 
 void main() {
   runApp(const MyApp());

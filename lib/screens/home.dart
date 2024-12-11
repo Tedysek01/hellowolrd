@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hellowolrd/post.dart'; // Přidáš cestu k souboru s třídou
+
+
+class Post {
+  String? pickupLocation; // Místo nakládky
+  String? dropoffLocation; // Místo vykládky
+  String? vehicleSize; // Velikost auta
+  String? description; // Popis
+  String? photo; // Odkaz na fotku nebo soubor
+
+  Post({
+    this.pickupLocation,
+    this.dropoffLocation,
+    this.vehicleSize,
+    this.description,
+    this.photo,
+  });
+}
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -12,8 +33,28 @@ const CameraPosition _kGooglePlex = CameraPosition(
   target: LatLng(50.073658, 14.418540),
   zoom: 14.4746,
 );
+final TextEditingController _pickupController = TextEditingController();
+  final TextEditingController _dropoffController = TextEditingController();
 
 class _MyHomePageState extends State<MyHomePage> {
+ // TextEditingControllers pro uložení zadaných hodnot
+  final TextEditingController _pickupController = TextEditingController();
+  final TextEditingController _dropoffController = TextEditingController();
+
+  // Metoda pro validaci
+  bool _validateInputs() {
+    if (_pickupController.text.isEmpty || _dropoffController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Vyplňte obě místa!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     // Global key to control the drawer
@@ -133,12 +174,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           // Main Content (Bottom part with inputs and button)
           Positioned.fill(
-            top: 100,
+            top: 200,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextField(
+                   controller: _pickupController,
                     style: const TextStyle(color: Colors.white, fontSize: 16),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -156,6 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontSize: 16)),
                   ),
                   TextField(
+                    controller: _dropoffController,
                     style: const TextStyle(color: Colors.white, fontSize: 16),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -179,9 +222,28 @@ class _MyHomePageState extends State<MyHomePage> {
                       foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                       shape: const LinearBorder(),
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/pick_car');
-                    },
+                         onPressed: () {
+                // Validace vstupů
+                if (_validateInputs()) {
+                  // Předání dat do třídy Post
+                  // ignore: avoid_print
+                  print('Nakládka: ${_pickupController.text}');
+                  // ignore: avoid_print
+                  print('Vykládka: ${_dropoffController.text}');
+
+                  final post = Post(
+                    pickupLocation: _pickupController.text,
+                    dropoffLocation: _dropoffController.text,
+                  
+                  );
+                  // Navigace na další obrazovku s předáním post
+                  Navigator.pushNamed(
+                    context,
+                    '/pick_car',
+                    arguments: post,
+                  );
+                }
+              },
                     child: const Text(
                       'Pokračovat',
                       style: TextStyle(
