@@ -1,23 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-
-class Post {
-  String? pickupLocation; // Místo nakládky
-  String? dropoffLocation; // Místo vykládky
-  String? vehicleSize; // Velikost auta
-  String? description; // Popis
-  String? photo; // Odkaz na fotku nebo soubor
-
-  Post({
-    this.pickupLocation,
-    this.dropoffLocation,
-    this.vehicleSize,
-    this.description,
-    this.photo,
-  });
-}
-
+import 'package:hellowolrd/post.dart';
 
 class PickCar extends StatefulWidget {
   const PickCar({super.key});
@@ -27,8 +11,11 @@ class PickCar extends StatefulWidget {
 }
 
 class _PickCarState extends State<PickCar> {
+
   @override
   Widget build(BuildContext context) {
+  final Post post = ModalRoute.of(context)!.settings.arguments as Post;
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(0, 11, 127, 1),
       appBar: AppBar(
@@ -77,6 +64,8 @@ class _PickCarState extends State<PickCar> {
           Column(
           
             children: [
+              Text('${post.pickupLocation}'),
+              Text('${post.dropoffLocation}'),
               const Text('/ODHAD CENY NA ZÁKLADĚ KM X VELIKOST/', style: TextStyle(color: Color.fromARGB(255, 219, 219, 219), fontSize: 16, fontWeight: FontWeight.w600),),
               const SizedBox(height: 15,),
               TextField(
