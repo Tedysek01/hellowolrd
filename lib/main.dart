@@ -29,14 +29,14 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.purple,
         useMaterial3: true,
       ),
-      home:  MyHomePage(),
+      home:  const MyHomePage(),
       routes: {
-        '/homepage':(context) =>  MyHomePage(),
-        '/pick_car':(context) =>  PickCar(),
-        '/add_info':(context) =>  AddInfo(),
-        '/order_summary':(context)=>  OrderSummary(),
-        '/chatrooms':(context) =>  ChatRooms(),
-        '/chatscreen':(context) =>  ChatScreen(),
+        '/homepage':(context) =>  const MyHomePage(),
+        '/pick_car':(context) =>  const PickCar(),
+        '/add_info':(context) =>  const AddInfo(),
+        '/order_summary':(context)=>  const OrderSummary(),
+        '/chatrooms':(context) =>  const ChatRooms(),
+        '/chatscreen':(context) =>  const ChatScreen(),
       },
     );
   }
