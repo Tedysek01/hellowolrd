@@ -36,11 +36,11 @@ class _ChatRoomsState extends State<ChatRooms> {
                   ),
                 );
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 47,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +64,7 @@ class _ChatRoomsState extends State<ChatRooms> {
                     ),
                   ),
                   Row(
-                    children: const [
+                    children: [
                       CircleAvatar(
                         foregroundImage: AssetImage('assets/images/Artboard 4.png'),
                         radius: 27,

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_places_autocomplete_text_field/google_places_autocomplete_text_field.dart';
 import 'package:hellowolrd/post.dart'; // Přidáš cestu k souboru s třídou
 
 class MyHomePage extends StatefulWidget {
@@ -199,6 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Color.fromARGB(159, 255, 255, 255),
                             fontSize: 16)),
                   ),
+                  GooglePlacesAutoCompleteTextFormField(googleAPIKey: 'AIzaSyDUk2YTkFMXA2wJUZ3bTKKbi5uoalSdoww',),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(1000, 100),
@@ -221,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     '/pick_car',
                     arguments: post,
                   );
-                };
+                }
               },
                     child: const Text(
                       'Pokračovat',

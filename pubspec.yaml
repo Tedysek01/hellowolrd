@@ -37,6 +37,13 @@ dependencies:
   http: ^1.2.2
   firebase_core: ^2.13.0
   cloud_firestore: ^4.5.0
+  flutter_typeahead: ^4.0.0
+  dio: ^5.2.0
+  intl: ^0.18.0
+  image_picker: ^0.8.6
+  google_places_autocomplete_text_field: ^1.0.0
+
+
 
 
 

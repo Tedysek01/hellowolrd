@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hellowolrd/post.dart';
 import 'package:hellowolrd/car_data.dart';
+import 'package:intl/intl.dart';
 
 class PickCar extends StatefulWidget {
   const PickCar({super.key});
@@ -53,7 +54,7 @@ class _PickCarState extends State<PickCar> {
               ),
               Text(
                 carData[_selectedCar]!["name"]!,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     color: Colors.white),
@@ -63,7 +64,7 @@ class _PickCarState extends State<PickCar> {
               ),
               Text(
                 carData[_selectedCar]!["description"]!,
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: const TextStyle(fontSize: 14, color: Colors.white),
               )
             ],
           ),
@@ -124,6 +125,11 @@ class _PickCarState extends State<PickCar> {
                     hintStyle: const TextStyle(
                         color: Color.fromARGB(159, 255, 255, 255),
                         fontSize: 16)),
+                        readOnly: true,
+            onTap: (){
+              _selectDateTime();
+            },
+                        
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -155,5 +161,35 @@ class _PickCarState extends State<PickCar> {
         ],
       ),
     );
+    
   }
+  
+Future<void> _selectDateTime() async {
+  DateTime? pickedDate = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(2000),
+    lastDate: DateTime(2100),
+  );
+
+  if (pickedDate != null) {
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (pickedTime != null) {
+      setState(() {
+        final DateTime fullDateTime = DateTime(
+          pickedDate.year,
+          pickedDate.month,
+          pickedDate.day,
+          pickedTime.hour,
+          pickedTime.minute,
+        );
+         _dateController.text = DateFormat('dd.MM.yyyy HH:mm').format(fullDateTime);
+      });
+    }
+  }
+}
 }
