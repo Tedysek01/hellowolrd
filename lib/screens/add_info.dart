@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:hellowolrd/post.dart';
 
 class AddInfo extends StatefulWidget {
   const AddInfo({super.key});
@@ -9,8 +9,23 @@ class AddInfo extends StatefulWidget {
 }
 
 class _AddInfoState extends State<AddInfo> {
+  
+  final TextEditingController _descriptionController = TextEditingController();
+  bool _validateInputs() {
+    if (_descriptionController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Zadejte popis!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return false;
+    }
+    return true;
+  }
   @override
   Widget build(BuildContext context) {
+      Post post = ModalRoute.of(context)!.settings.arguments as Post;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(0, 11, 127, 1),
       appBar: AppBar(
@@ -30,6 +45,7 @@ class _AddInfoState extends State<AddInfo> {
             width: 360,
             height: 230,
             child: TextField(
+              controller: _descriptionController,
               textAlignVertical: TextAlignVertical.top,
               style: const TextStyle(color: Colors.white, fontSize: 14),
               maxLines: null,
@@ -108,7 +124,14 @@ class _AddInfoState extends State<AddInfo> {
               shape: const LinearBorder(),
             ),
             onPressed: () {
-              Navigator.pushNamed(context,'/order_summary');
+              if (_validateInputs()){
+              post.description = _descriptionController.text;
+              
+               // ignore: avoid_print
+               print('Current Post: $post');
+              Navigator.pushNamed(context,'/order_summary', arguments: post);
+              }
+              
             },
             child: const Text(
               'Pokračovat',

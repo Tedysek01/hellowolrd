@@ -7,11 +7,15 @@ import 'package:hellowolrd/screens/chat_screen.dart';
 import 'package:hellowolrd/screens/home.dart';
 import 'package:hellowolrd/screens/order_summary.dart';
 import 'package:hellowolrd/screens/pick_car.dart';
-import 'package:hellowolrd/post.dart'; // P
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Inicializace Firebase
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -25,14 +29,14 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.purple,
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home:  MyHomePage(),
       routes: {
-        '/homepage':(context) => const MyHomePage(),
-        '/pick_car':(context) => const PickCar(),
-        '/add_info':(context) => const AddInfo(),
-        '/order_summary':(context)=> const OrderSummary(),
-        '/chatrooms':(context) => const ChatRooms(),
-        '/chatscreen':(context) => const ChatScreen(),
+        '/homepage':(context) =>  MyHomePage(),
+        '/pick_car':(context) =>  PickCar(),
+        '/add_info':(context) =>  AddInfo(),
+        '/order_summary':(context)=>  OrderSummary(),
+        '/chatrooms':(context) =>  ChatRooms(),
+        '/chatscreen':(context) =>  ChatScreen(),
       },
     );
   }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hellowolrd/post.dart';
+import 'package:hellowolrd/car_data.dart';
+
 
 class OrderSummary extends StatefulWidget {
   const OrderSummary({super.key});
@@ -8,10 +11,11 @@ class OrderSummary extends StatefulWidget {
 }
 
 class _OrderSummaryState extends State<OrderSummary> {
+
   @override
   Widget build(BuildContext context) {
+    final Post post = ModalRoute.of(context)!.settings.arguments as Post;
     return Scaffold(
-      
       backgroundColor: const Color.fromRGBO(0, 11, 127, 1),
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(0, 11, 127, 1),
@@ -25,12 +29,13 @@ class _OrderSummaryState extends State<OrderSummary> {
           const SizedBox(height: 40,),
           Center(
             child: Container(
-              child: Image.asset('assets/images/Artboard 2.png', width: 320,),
+              child: Image.asset(
+                carData[post.vehicleSize]!["big-image"]!, width: 320,),
             ),
           ),
           
           
-          const Padding(
+           Padding(
             padding: EdgeInsets.only(left: 30),
             child: SizedBox(
               width: double.infinity,
@@ -38,13 +43,13 @@ class _OrderSummaryState extends State<OrderSummary> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 
                 children: [
-                  Text('HaulGO Dodavka', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
+                  Text(carData[post.vehicleSize]?["name"] ?? "Neznámé vozidlo", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
                   SizedBox(height: 5,),
-                  Text('Misto vyzvednuti', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
+                  Text('${post.pickupLocation}', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
                   SizedBox(height: 5,),
-                  Text('Misto vylozeni', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
+                  Text('${post.dropoffLocation}', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
                   SizedBox(height: 5,),
-                  Text('8.12.2024 12:45', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
+                  Text('${post.date}', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
                   SizedBox(height: 5,),
                   Text('ODHAD CENY NA ZAKLADE KM X VELIKOST', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500 )),
                   SizedBox(height: 5,),

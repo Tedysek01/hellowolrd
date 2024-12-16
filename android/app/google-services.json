@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "983110463911",
+    "project_id": "haulgo-d6cd0",
+    "storage_bucket": "haulgo-d6cd0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983110463911:android:e780030898cb9942318682",
+        "android_client_info": {
+          "package_name": "com.example.hellowolrd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcqmx0rcSY8VQPm3iPaXLOkcBAsO5nMeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983110463911:android:69c30aab1dc6203d318682",
+        "android_client_info": {
+          "package_name": "com.haulgo.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcqmx0rcSY8VQPm3iPaXLOkcBAsO5nMeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

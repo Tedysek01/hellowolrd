@@ -1,24 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hellowolrd/post.dart'; // Přidáš cestu k souboru s třídou
-
-
-class Post {
-  String? pickupLocation; // Místo nakládky
-  String? dropoffLocation; // Místo vykládky
-  String? vehicleSize; // Velikost auta
-  String? description; // Popis
-  String? photo; // Odkaz na fotku nebo soubor
-
-  Post({
-    this.pickupLocation,
-    this.dropoffLocation,
-    this.vehicleSize,
-    this.description,
-    this.photo,
-  });
-}
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -225,24 +209,19 @@ class _MyHomePageState extends State<MyHomePage> {
                          onPressed: () {
                 // Validace vstupů
                 if (_validateInputs()) {
-                  // Předání dat do třídy Post
-                  // ignore: avoid_print
-                  print('Nakládka: ${_pickupController.text}');
-                  // ignore: avoid_print
-                  print('Vykládka: ${_dropoffController.text}');
-
-                  final post = Post(
+                    Post post = Post(
                     pickupLocation: _pickupController.text,
                     dropoffLocation: _dropoffController.text,
-                  
                   );
                   // Navigace na další obrazovku s předáním post
+                  print('Current Post: $post');
+
                   Navigator.pushNamed(
                     context,
                     '/pick_car',
                     arguments: post,
                   );
-                }
+                };
               },
                     child: const Text(
                       'Pokračovat',
