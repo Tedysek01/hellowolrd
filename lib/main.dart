@@ -5,6 +5,7 @@ import 'package:hellowolrd/screens/add_info.dart';
 import 'package:hellowolrd/screens/chat_rooms.dart';
 import 'package:hellowolrd/screens/chat_screen.dart';
 import 'package:hellowolrd/screens/home.dart';
+import 'package:hellowolrd/screens/onoarding.dart';
 import 'package:hellowolrd/screens/order_summary.dart';
 import 'package:hellowolrd/screens/pick_car.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.purple,
         useMaterial3: true,
       ),
-      home:  const MyHomePage(),
+      home:  const Onboarding(),
       routes: {
         '/homepage':(context) =>  const MyHomePage(),
         '/pick_car':(context) =>  const PickCar(),
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/order_summary':(context)=>  const OrderSummary(),
         '/chatrooms':(context) =>  const ChatRooms(),
         '/chatscreen':(context) =>  const ChatScreen(),
+        '/onboarding': (context) => const Onboarding(),
       },
     );
   }
